@@ -6,8 +6,53 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .person {
+            display: inline-block;
+            margin: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 2px #ccc;
+            width: 200px;
+            padding: 20px;
+        }
+
+        .person > img {
+            max-width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
 
+
+<div id="root"></div>
+
+<script type="text/babel">
+    // const Person = (props) => {
+    const Person = ({name, age, photo}) => {
+        return (
+            <div className="person">
+                <img src={photo} alt={'Photo of ' + name}/>
+                <h1>{name}</h1>
+                <p>Age: {age}</p>
+                <p>Number of orders: {Math.floor(Math.random() * 100) + 1}</p>
+            </div>
+        )
+    };
+
+    const people = (
+        <div>
+            <Person name="Jane" age={20} photo="https://ucarecdn.com/ed89c0ac-cb7a-4b24-a64b-cbfc95b31d28/-/crop/820x821/268,0/-/preview/-/progressive/yes/-/format/auto/"/>
+            <Person name="Taalaibek" age={21} photo="https://static.wikia.nocookie.net/masseffectfanfiction/images/7/7a/John_Shepard_%28ME3%29.png"/>
+        </div>
+    )
+
+    const container = document.getElementById('root');
+    ReactDOM.createRoot(container).render(people);
+
+</script>
 </body>
 </html>
